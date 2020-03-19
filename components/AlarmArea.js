@@ -8,24 +8,14 @@ import {
   SafeAreaView,
   FlatList,
 } from 'react-native';
-import NumericInput from 'react-native-numeric-input';
+import shortid from 'shortid';
+
 import AddAlarm from './AddAlarm';
 
 const AlarmArea = () => {
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
-  const [alarms, setAlarms] = useState([
-    {
-      id: UUIDGenerator.getRandomUUID(),
-      hr: 12,
-      min: 10,
-    },
-    {
-      id: UUIDGenerator.getRandomUUID(),
-      hr: 1,
-      min: 19,
-    },
-  ]);
+  const [alarms, setAlarms] = useState([]);
 
   const setHr = h => {
     setHours(h);
@@ -47,16 +37,11 @@ const AlarmArea = () => {
 
   const addAlarm = (hour, minutes) => {
     setAlarms(prevItems => {
-      return [
-        {id: UUIDGenerator.getRandomUUID(), hr: hour, min: minutes},
-        ...prevItems,
-      ];
+      return [{id: shortid.generate(), hr: hour, min: minutes}, ...prevItems];
     });
   };
 
   const addToAlarms = (hr, min) => {
-    console.log();
-
     setAlarms(prevItems => {
       return [{id: UUIDGenerator.getRandomUUID(), hr, min}, ...prevItems];
     });
@@ -124,7 +109,7 @@ const styles = StyleSheet.create({
   },
   allAlarms: {
     flex: 2,
-    padding: 5
+    padding: 5,
   },
   singleAlarmItem: {
     backgroundColor: '#343434',
@@ -132,7 +117,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 7,
     borderRadius: 25,
-    padding: 15
+    padding: 15,
   },
   singleAlarmText: {
     color: 'white',

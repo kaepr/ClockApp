@@ -63,7 +63,7 @@ const AddAlarm = ({addAlarm}) => {
             //console.log(hours, minutes);
             addAlarm(hours, minutes);
           }}>
-          <Text style={styles.buttonText}>Add Alarm V2</Text>
+          <Text style={styles.buttonText}>Add Alarm</Text>
         </TouchableOpacity>
       </View>
     </View>
